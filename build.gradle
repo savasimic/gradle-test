@@ -1,5 +1,5 @@
 plugins {
-    id 'pl.allegro.tech.build.axion-release' version '1.14.4' apply false
+    id 'pl.allegro.tech.build.axion-release' version '1.13.14' apply false
 }
 
 apply plugin: 'java'
@@ -29,7 +29,7 @@ scmVersion {
             'legacy/.*' : [ 'incrementMinorIfNotOnRelease', [releaseBranchPattern: 'legacy/release.*'] ],
     ]
     checks {
-        uncommittedChanges.set(false)
+        uncommittedChanges = false
     }
 }
 
