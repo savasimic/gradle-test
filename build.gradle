@@ -1,0 +1,44 @@
+plugins {
+    id 'pl.allegro.tech.build.axion-release' version '1.14.4' apply false
+}
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'application'
+apply plugin: 'pl.allegro.tech.build.axion-release'
+
+
+mainClassName = 'hello.HelloWorld'
+
+repositories {
+    mavenCentral() 
+}
+
+jar {
+    archiveBaseName = 'gradle-test'
+    archiveVersion =  '0.1.0'
+}
+
+sourceCompatibility = 11
+targetCompatibility = 11
+
+scmVersion {
+    branchVersionIncrementer = [
+            'feature/.*' : 'incrementMinor',
+            'bugfix/.*' : { c -> return c.currentVersion.incrementPatchVersion() },
+            'legacy/.*' : [ 'incrementMinorIfNotOnRelease', [releaseBranchPattern: 'legacy/release.*'] ],
+    ]
+    checks {
+        uncommittedChanges.set(false)
+    }
+}
+
+dependencies {
+    implementation "joda-time:joda-time:2.2"
+    implementation 'org.apache.logging.log4j:log4j-api:2.14.1'
+    implementation 'org.apache.logging.log4j:log4j-core:2.14.1'
+
+    testImplementation "junit:junit:4.7"
+    testImplementation 'ch.qos.logback:logback-classic:1.2.9'
+}
+

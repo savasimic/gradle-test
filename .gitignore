@@ -1,0 +1,17 @@
+# Build
+target
+
+# IntelliJ
+*.iml
+.idea
+
+# Misc
+.DS_Store
+.buildpath
+.classpath
+.project
+.settings
+.vscode
+.gradle
+# Ignore Gradle build output directory
+build
